@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
+
+import com.incident.constants.Priority;
+import com.incident.constants.Status;
 import com.incident.model.Incident;
 import com.incident.service.IncidentService;
 
@@ -93,8 +96,8 @@ public class IncidentController {
 	@PutMapping("/update/incident/{incidentId}/{incidentDetails}/{reportedDateTime}/{priority}/{status}")
 	public Incident updateIncident(@PathVariable("incidentId") String incidentId,
 			@PathVariable("incidentDetails") String incidentDetails,
-			@PathVariable("reportedDateTime") LocalDate reportedDateTime, @PathVariable("priority") String priority,
-			@PathVariable("status") String status) {
+			@PathVariable("reportedDateTime") LocalDate reportedDateTime, @PathVariable("priority") Priority priority,
+			@PathVariable("status") Status status) {
 		return incidentService.updateIncident(incidentId, incidentDetails, reportedDateTime, priority, status);
 	}
 

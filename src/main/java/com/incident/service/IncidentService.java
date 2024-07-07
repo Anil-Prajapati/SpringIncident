@@ -8,6 +8,8 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.incident.constants.Priority;
+import com.incident.constants.Status;
 import com.incident.model.Incident;
 import com.incident.model.User;
 import com.incident.repository.IncidentRepository;
@@ -63,7 +65,7 @@ public class IncidentService {
 	}
 
 	public Incident updateIncident(String incidentId, String incidentDetails, LocalDate reportedDateTime,
-			String priority, String status) {
+			Priority priority, Status status) {
 		Incident incident = incidentRepository.findByIncidentId(incidentId);
 		incident.setIncidentDetails(incidentDetails);
 		incident.setReportedDateTime(reportedDateTime);

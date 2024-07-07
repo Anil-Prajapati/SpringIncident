@@ -3,10 +3,14 @@ package com.incident.model;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.incident.constants.Priority;
+import com.incident.constants.Status;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -48,14 +52,19 @@ public class Incident {
 	private LocalDate reportedDateTime;
 
 	@Column(name = "incident_priority")
-	private String priority;
+	@Enumerated(EnumType.STRING)
+	private Priority priority;
 
 	@Column(name = "incident_status")
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private Status status;
 
-	public Incident(String incidentId, String enterpriseOrGovernment, String reporterName, String incidentDetails,
-			LocalDate reportedDateTime, String priority, String status) {
+	
+
+	public Incident(Long id, String incidentId, String enterpriseOrGovernment, String reporterName,
+			String incidentDetails, LocalDate reportedDateTime, Priority priority, Status status, User user) {
 		super();
+		this.id = id;
 		this.incidentId = incidentId;
 		this.enterpriseOrGovernment = enterpriseOrGovernment;
 		this.reporterName = reporterName;
@@ -63,7 +72,10 @@ public class Incident {
 		this.reportedDateTime = reportedDateTime;
 		this.priority = priority;
 		this.status = status;
+		this.user = user;
 	}
+
+
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")

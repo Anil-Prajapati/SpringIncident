@@ -67,6 +67,9 @@ public class IncidentService {
 	public Incident updateIncident(String incidentId, String incidentDetails, LocalDate reportedDateTime,
 			Priority priority, Status status) {
 		Incident incident = incidentRepository.findByIncidentId(incidentId);
+		if(incident.getStatus()==Status.CLOSED) {
+			throw new IllegalArgumentException("Cannot update a closed incident.");
+		}
 		incident.setIncidentDetails(incidentDetails);
 		incident.setReportedDateTime(reportedDateTime);
 		incident.setPriority(priority);

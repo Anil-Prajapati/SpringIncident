@@ -62,6 +62,7 @@ public class SecurityConfig {
 								"/api/create/tci/extio/create",
 								"/api/pincode/**",
 								"all",
+								"/api/forget/**",
 								"/swagger-resources/**",
 			                    "/swagger-ui.html",
 			                    "/swagger-ui/**",

@@ -66,8 +66,8 @@ public class UserController {
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Password Updated Successfully"),
 			@ApiResponse(responseCode = "401", description = "Something Went Wrong. Please Try Again."),
 			@ApiResponse(responseCode = "404", description = "Data not Found") })
-	@SecurityRequirement(name = "Bearer Authentication")
-	@PreAuthorize("hasAnyRole('User')")
+//	@SecurityRequirement(name = "Bearer Authentication")
+//	@PreAuthorize("hasAnyRole('User')")
 	public User forgetPassword(@PathVariable("email") String email, @PathVariable("password") String password) {
 
 		User updatedUser = userService.forgetPassword(email, password);
